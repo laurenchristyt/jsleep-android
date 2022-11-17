@@ -1,10 +1,11 @@
 package LaurenChristyJSleepRJ.jsleep_android;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.Button;
+import android.content.Intent;
+import android.widget.Toast;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
@@ -13,25 +14,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        TextView register = findViewById(R.id.registerButton);
-        TextView main = findViewById(R.id.loginButton);
 
-        register.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent move = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(move);
-            }
-        });
+        Button loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(i -> startActivity(new Intent(this, MainActivity.class)));
 
-        main.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent move = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(move);
-            }
-        });
+        Button register = findViewById(R.id.registerButton);
+        register.setOnClickListener(i -> startActivity(new Intent(this, RegisterActivity.class)));
+
     }
-
-
 }
