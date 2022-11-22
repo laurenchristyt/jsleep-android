@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/register"
+        android:id="@+id/registerButtonLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="432dp"

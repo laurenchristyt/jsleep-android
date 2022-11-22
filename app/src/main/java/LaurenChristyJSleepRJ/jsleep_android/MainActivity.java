@@ -1,5 +1,6 @@
 package LaurenChristyJSleepRJ.jsleep_android;
 
+import LaurenChristyJSleepRJ.jsleep_android.model.Account;
 import LaurenChristyJSleepRJ.jsleep_android.model.Room;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
@@ -16,11 +17,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Gson gson = new Gson();
+    protected static Account accountLogin;
+    protected static Account accountRegister;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         String jsonString = toStringJSON(getApplicationContext(), "randomRoomList.json");
         Type token = new TypeToken<ArrayList<Room>>(){}.getType();
@@ -54,8 +58,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.my_account:
-                Toast.makeText(this, "Opening Profile", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, AboutMeActivity.class));
+                Toast.makeText(this, "Opening", Toast.LENGTH_SHORT).show();
+                Intent aboutMi = new Intent(MainActivity.this, AboutMeActivity.class);
+                startActivity(aboutMi);
             break;
 
             default:

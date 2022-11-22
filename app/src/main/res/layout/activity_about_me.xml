@@ -100,31 +100,31 @@
                     app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName" />
 
                 <TextView
-                    android:id="@+id/nameValue"
-                    android:textAlignment="textEnd"
+                    android:id="@+id/nameAboutMe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="156dp"
-                    android:layout_marginBottom="24dp"
+                    android:layout_marginBottom="28dp"
                     android:text="luren"
-                    app:layout_constraintBottom_toTopOf="@+id/emailValue"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintBottom_toTopOf="@+id/emailAboutMe"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.355"
+                    app:layout_constraintHorizontal_bias="0.767"
                     app:layout_constraintStart_toEndOf="@+id/AboutName" />
 
                 <TextView
-                    android:id="@+id/emailValue"
+                    android:id="@+id/emailAboutMe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="28dp"
                     android:text="lauren.christy@ui.ac.id"
-                    app:layout_constraintBottom_toTopOf="@+id/balanceValue"
+                    app:layout_constraintBottom_toTopOf="@+id/balanceAboutMe"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.857"
                     app:layout_constraintStart_toEndOf="@+id/AboutEmail" />
 
                 <TextView
-                    android:id="@+id/balanceValue"
+                    android:id="@+id/balanceAboutMe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
