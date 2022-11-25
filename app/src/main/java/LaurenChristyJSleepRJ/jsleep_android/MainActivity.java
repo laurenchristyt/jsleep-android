@@ -17,8 +17,13 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Gson gson = new Gson();
-    protected static Account accountLogin;
+    protected static Account accountLogin = null;
     protected static Account accountRegister;
+
+    public static Account accountLogin() {
+        return accountLogin;
+    }
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Opening", Toast.LENGTH_SHORT).show();
                 Intent aboutMi = new Intent(MainActivity.this, AboutMeActivity.class);
                 startActivity(aboutMi);
-            break;
+                break;
 
             default:
                 return super.onOptionsItemSelected(item);

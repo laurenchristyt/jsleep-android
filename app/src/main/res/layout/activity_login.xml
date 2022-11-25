@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/_96a58346155aeeb5ec317682d64217d"
     tools:context=".LoginActivity">
+
 
     <EditText
         android:id="@+id/usernameTextBoxLogin"
@@ -13,13 +15,16 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="220dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginTop="308dp"
+        android:backgroundTint="@color/white"
         android:hint="Username"
         android:inputType="text"
         android:minHeight="48dp"
         android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="#FDE0D8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,26 +35,16 @@
         android:layout_below="@+id/usernameTextBoxLogin"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginTop="384dp"
+        android:backgroundTint="@color/white"
         android:hint="Password"
         android:inputType="text"
         android:minHeight="48dp"
         android:padding="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/passwordTextBoxLogin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="380dp"
-        android:backgroundTint="@color/cardview_dark_background"
-        android:text="Login"
+        android:textColor="@color/white"
+        android:textColorHint="#FDE0D8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,8 +54,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="488dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="532dp"
         android:backgroundTint="@color/white"
         android:gravity="center"
         android:text="Dont have account?\nRegister now"
@@ -69,22 +64,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/jsleep"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="98dp"
-        android:text="JSLEEP"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_below="@+id/passwordTextBoxLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="464dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:text="Login"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="556dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/text_1669211985050"
+        app:tint="#FDE0D8" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="250dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="504dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/text_1669291265077"
+        app:tint="#FDE0D8" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="240dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="524dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/text_1669291244547"
+        app:tint="#FDE0D8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

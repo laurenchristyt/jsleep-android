@@ -1,6 +1,7 @@
 package LaurenChristyJSleepRJ.jsleep_android.request;
 
 import LaurenChristyJSleepRJ.jsleep_android.model.Account;
+import LaurenChristyJSleepRJ.jsleep_android.model.Renter;
 import LaurenChristyJSleepRJ.jsleep_android.model.Room;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -20,4 +21,10 @@ public interface BaseApiService {
 
     @POST("account/register")
     Call<Account> register (@Query("name") String name, @Query("email") String email, @Query("password") String Password);
+
+    @POST("account/registerRenter")
+    Call<Account> registerRenter (@Query("name") String name, @Query("address") String address, @Query("phoneNumber") String phoneNumber);
+
+    @POST("account/{id}/topUp")
+    Call<Boolean> topUp (@Path("id") int id, @Query("balance") double balance);
 }

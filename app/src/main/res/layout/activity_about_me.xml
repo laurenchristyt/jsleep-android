@@ -88,7 +88,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/TopUpButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="380dp"
@@ -129,10 +129,221 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:text="0.0"
-                    app:layout_constraintBottom_toTopOf="@+id/button4"
+                    app:layout_constraintBottom_toTopOf="@+id/TopUpButton"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.846"
                     app:layout_constraintStart_toEndOf="@+id/AboutBalance" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/RegisterRenterButton"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="32dp"
+                    android:backgroundTint="@color/cardview_dark_background"
+                    android:text="Register Renter"
+                    app:cornerRadius="@android:dimen/app_icon_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.644"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TopUpButton"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:visibility="gone"
+                    android:id="@+id/cardViewRegister"
+                    android:layout_width="303dp"
+                    android:layout_height="349dp"
+                    android:layout_marginTop="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TopUpButton"
+                    app:layout_constraintVertical_bias="0.0"
+                    >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/RegisterRenter"
+                            android:layout_width="107dp"
+                            android:layout_height="29dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Register Renter"
+                            android:textSize="15dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/RegisterName"
+                            android:layout_width="258dp"
+                            android:layout_height="43dp"
+                            android:layout_marginTop="28dp"
+                            android:ems="10"
+                            android:hint="Name"
+                            android:inputType="text"
+                            android:textColorHint="#B3B3B3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.488"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/RegisterRenter" />
+
+                        <EditText
+                            android:id="@+id/RegisterAddress"
+                            android:layout_width="258dp"
+                            android:layout_height="43dp"
+                            android:layout_marginTop="24dp"
+                            android:ems="10"
+                            android:hint="Address"
+                            android:inputType="text"
+                            android:textColorHint="#B3B3B3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.488"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/RegisterName" />
+
+                        <EditText
+                            android:id="@+id/RegisterPhone"
+                            android:layout_width="258dp"
+                            android:layout_height="43dp"
+                            android:layout_marginTop="24dp"
+                            android:ems="10"
+                            android:hint="Phone Number"
+                            android:inputType="number"
+                            android:textColorHint="#B3B3B3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.488"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/RegisterAddress" />
+
+                        <Button
+                            android:id="@+id/RegisterButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="28dp"
+                            android:layout_marginTop="18dp"
+                            android:text="Register"
+                            android:textColor="@color/black"
+                            android:backgroundTint="#E1D7D7"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/RegisterPhone" />
+
+                        <Button
+                            android:id="@+id/CancelButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginEnd="20dp"
+                            android:text="Cancel"
+                            android:textColor="@color/black"
+                            android:backgroundTint="#E1D7D7"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/RegisterPhone" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+
+                    android:id="@+id/cardViewRenter"
+                    android:layout_width="303dp"
+                    android:layout_height="349dp"
+                    app:cardCornerRadius="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.846"
+                    app:layout_constraintStart_toEndOf="@+id/AboutBalance"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/renter"
+                            android:layout_width="67dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="28dp"
+                            android:layout_marginTop="24dp"
+                            android:text="Renter"
+                            android:textSize="15dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/RenterName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="28dp"
+                            android:layout_marginTop="32dp"
+                            android:text="Name"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/renter" />
+
+                        <TextView
+                            android:id="@+id/addressNameView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="28dp"
+                            android:layout_marginTop="20dp"
+                            android:text="Address"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/RenterName" />
+
+                        <TextView
+                            android:id="@+id/storePhoneNumber"
+                            android:layout_width="101dp"
+                            android:layout_height="19dp"
+                            android:layout_marginStart="28dp"
+                            android:layout_marginTop="20dp"
+                            android:text="Phone Number"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/addressNameView" />
+
+                        <TextView
+                            android:id="@+id/RenterNameView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="21dp"
+                            android:layout_marginTop="94dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="namakuluren"
+                            android:textAlignment="textEnd"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/RenterAddressView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="21dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="Jl Bahagya meski berat"
+                            android:textAlignment="textEnd"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/RenterNameView" />
+
+                        <TextView
+                            android:id="@+id/RenterPhoneNumberView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="21dp"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="0812345678"
+                            android:textAlignment="textEnd"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/RenterAddressView" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
