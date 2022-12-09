@@ -7,7 +7,6 @@
     tools:context=".AboutMeActivity"
     >
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -74,7 +73,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/AboutEmail" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/amount"
                     android:layout_width="177dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="16dp"
@@ -97,7 +96,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.567"
-                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName" />
+                    app:layout_constraintStart_toEndOf="@+id/amount" />
 
                 <TextView
                     android:id="@+id/nameAboutMe"
@@ -151,7 +150,7 @@
 
 
                 <androidx.cardview.widget.CardView
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/cardViewRegister"
                     android:layout_width="303dp"
                     android:layout_height="349dp"
@@ -278,7 +277,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/RenterName"
+                            android:id="@+id/fixedName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="28dp"
@@ -288,24 +287,24 @@
                             app:layout_constraintTop_toBottomOf="@+id/renter" />
 
                         <TextView
-                            android:id="@+id/addressNameView"
+                            android:id="@+id/fixedAddress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="28dp"
                             android:layout_marginTop="20dp"
                             android:text="Address"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/RenterName" />
+                            app:layout_constraintTop_toBottomOf="@+id/fixedName" />
 
                         <TextView
-                            android:id="@+id/storePhoneNumber"
+                            android:id="@+id/fixedNumber"
                             android:layout_width="101dp"
                             android:layout_height="19dp"
                             android:layout_marginStart="28dp"
                             android:layout_marginTop="20dp"
                             android:text="Phone Number"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/addressNameView" />
+                            app:layout_constraintTop_toBottomOf="@+id/fixedAddress" />
 
                         <TextView
                             android:id="@+id/RenterNameView"
@@ -313,7 +312,7 @@
                             android:layout_height="21dp"
                             android:layout_marginTop="94dp"
                             android:layout_marginEnd="16dp"
-                            android:text="namakuluren"
+                            android:hint="Name"
                             android:textAlignment="textEnd"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -324,7 +323,7 @@
                             android:layout_height="21dp"
                             android:layout_marginTop="20dp"
                             android:layout_marginEnd="16dp"
-                            android:text="Jl Bahagya meski berat"
+                            android:hint="Jalan"
                             android:textAlignment="textEnd"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/RenterNameView" />
@@ -335,7 +334,7 @@
                             android:layout_height="21dp"
                             android:layout_marginTop="18dp"
                             android:layout_marginEnd="16dp"
-                            android:text="0812345678"
+                            android:hint="Number"
                             android:textAlignment="textEnd"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/RenterAddressView" />

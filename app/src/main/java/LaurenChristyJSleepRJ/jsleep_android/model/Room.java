@@ -1,13 +1,12 @@
 package LaurenChristyJSleepRJ.jsleep_android.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Room implements Serializable {
+public class Room extends Serializable {
     public int size;
     public String name;
-    public Facility facility;
+    public ArrayList<Facility> facility;
     public Price price;
     public City city;
     public String address;
@@ -18,5 +17,7 @@ public class Room implements Serializable {
     @Override
     public String toString() {
         return name;
+
     }
 }
+

@@ -40,7 +40,7 @@
         android:layout_marginTop="384dp"
         android:backgroundTint="@color/white"
         android:hint="Password"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:minHeight="48dp"
         android:padding="10dp"
         android:textColor="@color/white"

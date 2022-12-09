@@ -22,7 +22,9 @@ import retrofit2.Response;
 
 public class AboutMeActivity extends AppCompatActivity {
     TextView username, email, balance;
-    TextView name, address, phoneNumber;
+    TextView renterName, renterAddress, renterPhone;
+
+    EditText editName, editAddress, editPhone, amount;
     BaseApiService mApiService;
     Context mContext;
 
@@ -34,34 +36,36 @@ public class AboutMeActivity extends AppCompatActivity {
         mApiService = UtilsApi.getApiService();
         mContext = this;
 
-        username = (TextView) findViewById(R.id.nameAboutMe);
-        username.setText(MainActivity.accountLogin.name);
-        email = (TextView) findViewById(R.id.emailAboutMe);
-        email.setText(MainActivity.accountLogin.email);
-        balance = (TextView) findViewById(R.id.balanceAboutMe);
-        balance.setText(String.valueOf(MainActivity.accountLogin.balance));
+        Account account = LoginActivity.accountLogin;
 
-        CardView renterCard = findViewById(R.id.cardViewRenter);
-        CardView registerCard = findViewById(R.id.cardViewRegister);
+        //Account Details
+        username = findViewById(R.id.nameAboutMe);
+        email = findViewById(R.id.emailAboutMe);
+        balance = findViewById(R.id.balanceAboutMe);
+        amount = findViewById(R.id.amount);
 
+        username.setText(LoginActivity.accountLogin.name);
+        email.setText(LoginActivity.accountLogin.email);
+        balance.setText(String.valueOf(LoginActivity.accountLogin.balance));
+
+        //Button
         Button registerRenterButton = findViewById(R.id.RegisterRenterButton);
         Button cancelButton = findViewById(R.id.CancelButton);
         Button topUpButton = findViewById(R.id.TopUpButton);
         Button registerRenter = findViewById(R.id.RegisterButton);
 
-        if ((MainActivity.accountLogin().renter == null)) {
-            registerRenterButton.setVisibility(View.VISIBLE);
-            renterCard.setVisibility(View.GONE);
-        } else {
-            registerRenterButton.setVisibility(View.GONE);
-            renterCard.setVisibility(View.VISIBLE);
-            TextView renterName = findViewById(R.id.RenterNameView);
-            renterName.setText(MainActivity.accountLogin().renter.username);
-            TextView renterAddress = findViewById(R.id.RenterAddressView);
-            renterAddress.setText(MainActivity.accountLogin().renter.address);
-            TextView renterPhoneNumber = findViewById(R.id.RenterPhoneNumberView);
-            renterPhoneNumber.setText(MainActivity.accountLogin().renter.phoneNumber);
-        }
+        //Card View
+        CardView renterCard = findViewById(R.id.cardViewRenter);
+        CardView registerCard = findViewById(R.id.cardViewRegister);
+
+        //Register Renter
+        renterName = findViewById(R.id.RenterNameView);
+        renterAddress = findViewById(R.id.RenterAddressView);
+        renterPhone = findViewById(R.id.RenterPhoneNumberView);
+
+        editName = findViewById(R.id.RegisterName);
+        editAddress = findViewById(R.id.RegisterAddress);
+        editPhone = findViewById(R.id.RegisterPhone);
 
         topUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,65 +74,90 @@ public class AboutMeActivity extends AppCompatActivity {
             }
         });
 
-        registerRenterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerRenterButton.setVisibility(View.GONE);
-                registerCard.setVisibility(View.VISIBLE);
-            }
-            });
+        if(account.renter == null) {
+            registerRenterButton.setVisibility(View.VISIBLE);
+            renterCard.setVisibility(View.GONE);
+            registerCard.setVisibility(View.GONE);
 
-        registerRenter.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        requestRenter();
+            registerRenterButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    registerRenterButton.setVisibility(View.GONE);
+                    renterCard.setVisibility(View.GONE);
+                    registerCard.setVisibility(View.VISIBLE);
+
+                    registerRenter.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                        LoginActivity.renter = requestRegister();
+                            Intent move = new Intent(AboutMeActivity.this, LoginActivity.class);
+                            startActivity(move);
+
+                        }
+                    });
+                    cancelButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            registerRenterButton.setVisibility(View.VISIBLE);
+                            renterCard.setVisibility(View.GONE);
+                            registerCard.setVisibility(View.GONE);
+
+                            renterName.setText("");
+                            renterAddress.setText("");
+                            renterPhone.setText("");
+                        }
+                    });
                 }
-        });
+            });
+        } else {
+            registerRenterButton.setVisibility(View.GONE);
+            renterCard.setVisibility(View.VISIBLE);
+            registerCard.setVisibility(View.GONE);
 
-        cancelButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                registerRenterButton.setVisibility(View.VISIBLE);
-                registerCard.setVisibility(View.GONE);
-            }
-        });
-
-
+            renterName.setText(LoginActivity.accountLogin.renter.username);
+            renterAddress.setText(LoginActivity.accountLogin.renter.address);
+            renterPhone.setText(LoginActivity.accountLogin.renter.phoneNumber);
+        }
     }
 
-    protected Renter requestRenter(){
-        System.out.println("RENTER : " + name.getText().toString() + address.getText().toString() + phoneNumber.getText().toString());
-        mApiService.registerRenter(name.getText().toString(), address.getText().toString(), phoneNumber.getText().toString()).enqueue(new Callback<Account>(){
+    public Renter requestRegister() {
+        mApiService.registerRenter(LoginActivity.accountLogin.id, editName.getText().toString(), editAddress.getText().toString(), editPhone.getText().toString()).enqueue(new Callback<Renter>(){
             @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
-                if(response.isSuccessful()){
-                    Toast.makeText(mContext, "Successful", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<Renter> call, Response<Renter> response) {
+                if(response.isSuccessful()) {
+                    Renter renter;
+                    renter = response.body();
+                    LoginActivity.accountLogin.renter = renter;
+                    System.out.println("ACCOUNT RENTER ADDED");
+                    Intent move = new Intent(AboutMeActivity.this, AboutMeActivity.class);
+                    startActivity(move);
+                    Toast.makeText(mContext, "Register Renter Successful!", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Account> call, Throwable t) {
-                Toast.makeText(mContext, "Failed", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Renter> call, Throwable t) {
+                System.out.println("ACCOUNT RENTER ALREADY REGISTERED");
+                System.out.println(t.toString());
+                Toast.makeText(mContext, "ACCOUNT RENTER ALREADY REGISTERED!", Toast.LENGTH_LONG).show();
             }
         });
         return null;
     }
 
-    protected Boolean requestTopUp(){
-        mApiService.topUp(0, Double.parseDouble(balance.getText().toString())).enqueue(new Callback<Boolean>(){
+    protected Boolean requestTopUp() {
+        mApiService.topUp(LoginActivity.accountLogin.id, Double.parseDouble(amount.getText().toString())).enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                if(response.isSuccessful()){
-                    Toast.makeText(mContext, "Successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Top Up Successful", Toast.LENGTH_SHORT).show();
 
-                }
             }
 
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
-                Toast.makeText(mContext, "Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Top Up Failed", Toast.LENGTH_SHORT).show();
             }
         });
-        return null;
+        return false;
     }
 }

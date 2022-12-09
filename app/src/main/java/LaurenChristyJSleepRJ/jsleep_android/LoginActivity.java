@@ -1,6 +1,5 @@
 package LaurenChristyJSleepRJ.jsleep_android;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -13,22 +12,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.TextView;
 
-
 import com.google.gson.Gson;
 
-import retrofit2.*;
-
-import LaurenChristyJSleepRJ.jsleep_android.model.*;
-
-import LaurenChristyJSleepRJ.jsleep_android.request.*;
+import LaurenChristyJSleepRJ.jsleep_android.model.Account;
+import LaurenChristyJSleepRJ.jsleep_android.model.Renter;
+import LaurenChristyJSleepRJ.jsleep_android.request.BaseApiService;
 import LaurenChristyJSleepRJ.jsleep_android.request.UtilsApi;
-
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-
     BaseApiService mApiService;
     EditText username, password;
     Context mContext;
+    static Account accountLogin;
+    static Renter renter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Account account = requestAccount();
                 Account login = requestLogin();
-
 
             }
         });
@@ -83,13 +81,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if(response.isSuccessful()){
-                    Account account;
-                    account = response.body();
-                    System.out.println(account.toString());
+                    accountLogin = response.body();
                     Intent move = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(move);
                     Toast.makeText(mContext, "Login Successful", Toast.LENGTH_SHORT).show();
-                    MainActivity.accountLogin = account;
+
                 }
             }
 
