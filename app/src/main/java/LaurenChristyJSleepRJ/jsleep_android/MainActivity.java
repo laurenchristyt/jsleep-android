@@ -73,9 +73,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, DetailRoomActivity.class);
             startActivity(intent);
         });
-
-
-
     }
 
     protected ArrayList<Room> getAllRooms() {

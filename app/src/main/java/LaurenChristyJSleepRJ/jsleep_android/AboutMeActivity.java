@@ -150,6 +150,9 @@ public class AboutMeActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 Toast.makeText(mContext, "Top Up Successful", Toast.LENGTH_SHORT).show();
+                Intent move = new Intent(AboutMeActivity.this, AboutMeActivity.class);
+                startActivity(move);
+
 
             }
 

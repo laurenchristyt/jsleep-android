@@ -4,10 +4,14 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +20,8 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import LaurenChristyJSleepRJ.jsleep_android.model.Payment;
 import LaurenChristyJSleepRJ.jsleep_android.request.BaseApiService;
@@ -26,199 +32,81 @@ import retrofit2.Response;
 
 
 public class CreatePayment extends AppCompatActivity {
-    BaseApiService mApiService;
+    Button orderBtn;
+    TextView roomName;
     Context mContext;
-    EditText dateFrom,dateTo,monthFrom,monthTo,yearFrom,yearTo;
-    Button proceedPayment, cancelPayment,acceptPayment,rejectPayment,seeVoucher,backtoRoomDetail;
-    public static Payment bill;
-    //public static int idroom;
-    public static boolean accepted,rejected;
-    public static boolean isUseVoucher;
+    BaseApiService mApiService;
+    EditText fromDate, toDate;
+    final String REGEX_DATE_PATTERN = "\\d{4}-\\d{2}-\\d{2}";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_create);
 
-        mApiService = UtilsApi.getApiService();
+        mApiService= UtilsApi.getApiService();
         mContext = this;
+        roomName = findViewById(R.id.roomName);
+        roomName.setText(DetailRoomActivity.currentRoom.name);
+        orderBtn = findViewById(R.id.order);
+        fromDate = findViewById(R.id.fromDate);
+        toDate = findViewById(R.id.toDate);
 
-        dateFrom=findViewById(R.id.inputDateFrom);
-        monthFrom=findViewById(R.id.inputMonthFrom);
-        yearFrom=findViewById(R.id.inputYearFrom);
-        dateTo=findViewById(R.id.inputDateTo);
-        monthTo=findViewById(R.id.inputMonthTo);
-        yearTo=findViewById(R.id.inputYearTo);
-//create payment gak ngurangin balance
-        //jadi kek bikin tagihan doang
-        proceedPayment = findViewById(R.id.confirmPaymentButton);
-        //cancelPayment = findViewById(R.id.cancelPaymentButton);
-        acceptPayment = findViewById(R.id.acceptPayment);
-        rejectPayment = findViewById(R.id.rejectPayment);
-        backtoRoomDetail=findViewById(R.id.backtoMainbutton);
-        seeVoucher = findViewById(R.id.useVoucher);
-//        if(RoomDetail.currentRoom.booked==null){
-//            proceedPayment.setVisibility(View.VISIBLE);
-//        }
-//        else{
-//            proceedPayment.setVisibility(View.INVISIBLE);
-//        }
-
-//        cancelPayment.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //RoomDetail.currentRoom=null;
-//                startActivity(new Intent(CreatePayment.this, RoomDetail.class));
-//            }
-//        });
-
-        backtoRoomDetail.setOnClickListener(new View.OnClickListener() {
+        orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CreatePayment.this, DetailRoomActivity.class));
+                Payment payment = requestPayment(LoginActivity.accountLogin.id, LoginActivity.accountLogin.renter.id, DetailRoomActivity.currentRoom.id,
+                        fromDate.getText().toString(), toDate.getText().toString());
             }
         });
 
-        proceedPayment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //proceedPayment.setVisibility(View.INVISIBLE);
-                String strt = dateFrom.getText().toString()+"/"+monthFrom.getText().toString()+"/"+yearFrom.getText().toString();
-                System.out.println(dateFrom.getText().toString());
-                String end = dateTo.getText().toString()+"/"+monthTo.getText().toString()+"/"+yearTo.getText().toString();
-                System.out.println(strt+"  "+end);
-                Payment none = requestPayment(strt.toString(),end.toString());
-                //potensi bug disini, karena blok if mungkin dieksekusi sebelum response muncul
 
-            }
-        });
-
-        //acceptPayment.setOnClickListener, method accept panggil disini,rejectPayment.setVisibility(VISIBLE)
-        acceptPayment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean rtn = acceptPayment();
-                //RoomDetail.roomBill=bill;
-                acceptPayment.setVisibility(View.INVISIBLE);
-                seeVoucher.setVisibility(View.INVISIBLE);
-                rejectPayment.setVisibility(View.VISIBLE);
-            }
-        });
-        rejectPayment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean rtn = refundPayment();
-                //RoomDetail.roomBill=null;
-                acceptPayment.setVisibility(View.VISIBLE);
-                rejectPayment.setVisibility(View.INVISIBLE);
-            }
-        });
-
-//        seeVoucher.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //isUseVoucher = true;
-//                startActivity(new Intent(CreatePayment.this,VoucherList.class));
-//            }
-//        });
     }
+    protected Payment requestPayment(int buyerId, int renterId, int roomId, String fromDate, String toDate) {
 
-    protected Payment requestPayment(String from, String to){
-        System.out.println(from+"  "+to+" from requestPayment");
-        System.out.println("Account Info: "+LoginActivity.accountLogin.toString());
-        System.out.println("Room Info: "+ DetailRoomActivity.currentRoom.toString());
-        mApiService.createPayment(LoginActivity.accountLogin.id,LoginActivity.accountLogin.renter.id,
-                DetailRoomActivity.currentRoom.id,from,to).enqueue(new Callback<Payment>() {
-            @Override
-            public void onResponse(Call<Payment> call, Response<Payment> response) {
-                if(response.isSuccessful()){
-                    bill = response.body();
-                    System.out.println("Resp: "+bill.toString());
-                    if(bill!=null){
-                        Toast.makeText(mContext, "Create Bill Success!", Toast.LENGTH_LONG).show();
-                        proceedPayment.setVisibility(View.INVISIBLE);
-                        //cancelPayment.setVisibility(View.INVISIBLE);
-                        acceptPayment.setVisibility(View.VISIBLE);
-                        seeVoucher.setVisibility(View.VISIBLE);
-                        rejectPayment.setVisibility(View.INVISIBLE);
+        System.out.println(fromDate);
+        System.out.println(toDate);
+
+        Pattern pattern = Pattern.compile(REGEX_DATE_PATTERN);
+        Matcher matcher = pattern.matcher(fromDate);
+        Matcher matcher2 = pattern.matcher(toDate);
+
+        boolean isMatched = matcher.matches();
+        boolean isMatched2 = matcher2.matches();
+
+
+        if(isMatched && isMatched2) {
+            mApiService.createPayment(buyerId, renterId, roomId, fromDate, toDate).enqueue(new Callback<Payment>() {
+                @Override
+                public void onResponse(Call<Payment> call, Response<Payment> response) {
+                    if (response.isSuccessful()) {
+                        // MainActivity.reloadAccount(MainActivity.savedAccount.id);
+                        Toast.makeText(mContext, "Payment Success", Toast.LENGTH_SHORT).show();
+                        Intent move = new Intent(CreatePayment.this, AboutMeActivity.class);
+                        startActivity(move);
+                    } else {
+                        Toast.makeText(mContext, "Payment Failed1", Toast.LENGTH_SHORT).show();
                     }
-                    //bikin activity ke RoomDetail yg ada billnya?
-                    Toast.makeText(mContext, "Create Bill Success!", Toast.LENGTH_LONG).show();
-
                 }
-                else{
-                    bill = response.body();
-//                    System.out.println("Resp: "+bill.toString());
-                    Toast.makeText(mContext, "Cek Payment Response", Toast.LENGTH_LONG).show();
+                @Override
+                public void onFailure(Call<Payment> call, Throwable t) {
+                    Toast.makeText(mContext, "Payment Failed", Toast.LENGTH_SHORT).show();
                 }
-            }
+            });
 
-            @Override
-            public void onFailure(Call<Payment> call, Throwable t) {
-                t.printStackTrace();
-                Toast.makeText(mContext, "Create Bill Failed!,Check again your inputs and balance", Toast.LENGTH_LONG).show();
-            }
-        });
+        } else {
+            Toast.makeText(mContext, "Date format is not valid", Toast.LENGTH_SHORT).show();
+        }
+
         return null;
     }
-
-    protected Boolean acceptPayment(){
-        mApiService.accept(bill.id).enqueue(new Callback<Boolean>() {
-            @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                if(response.isSuccessful()){
-                    accepted = response.body();
-                    System.out.println("Resp: "+bill.toString());
-                    if(accepted){
-//                        if(VoucherDetail.selectedVoucher!=null){
-//ini buat apa ya?
-//                        }
-                        Toast.makeText(mContext, "Payment Successful!", Toast.LENGTH_LONG).show();
-                    }
-
-                    else{
-                        Toast.makeText(mContext, "Room already booked!", Toast.LENGTH_LONG).show();
-                    }
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
-                Toast.makeText(mContext, "Payment Failed", Toast.LENGTH_LONG).show();
-            }
-        });
-        return false;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
     }
 
-    protected Boolean refundPayment(){
-        mApiService.cancel(bill.id).enqueue(new Callback<Boolean>() {
-            @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                if(response.isSuccessful()){
-                    rejected = response.body();
-                    System.out.println("Resp: "+bill.toString());
-                    if(rejected){
-                        //operasi metematika refund disini apa di aboutMe ya?
-                        //requestTopUp(-1*(hargakamar-cutPrice);
-//                        if(isUseVoucher){
-//
-//                        }
-                        Toast.makeText(mContext, "Refund successful, check your balance!", Toast.LENGTH_LONG).show();
-                    }
-                    else{
-                        Toast.makeText(mContext, "Refund failed", Toast.LENGTH_LONG).show();
-                    }
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
-                Toast.makeText(mContext, "Backend error", Toast.LENGTH_LONG).show();
-            }
-        });
-        return false;
-    }
 
 }

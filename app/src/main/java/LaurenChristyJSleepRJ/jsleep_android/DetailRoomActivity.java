@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,16 +18,36 @@ public class DetailRoomActivity extends AppCompatActivity {
     TextView roomName, roomBedType, roomSize, roomPrice, roomAddress;
     CheckBox AC, Wifi, Refrigerator, Bathtub, Balcony, Resto, SwimmingP, FitnessC;
     static Room currentRoom = MainActivity.getSelectedRoom();
+
     Button rentNow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_room);
-        roomDetail();
+
+        roomName = findViewById(R.id.room_detail_name);
+        roomBedType = findViewById(R.id.room_detail_bedtype);
+        roomSize = findViewById(R.id.room_detail_size);
+        roomPrice = findViewById(R.id.room_detail_price);
+        roomAddress = findViewById(R.id.room_detail_address);
+        AC = findViewById(R.id.checkBox_AC);
+        Wifi = findViewById(R.id.checkBox_Wifi);
+        Refrigerator = findViewById(R.id.checkBox_Refri);
+        Bathtub = findViewById(R.id.checkBox_bathtub);
+        Balcony = findViewById(R.id.checkBox_balcony);
+        Resto = findViewById(R.id.checkBox_restaurant);
+        SwimmingP = findViewById(R.id.checkBox_swimpool);
+        FitnessC = findViewById(R.id.checkBox_fitnessC);
+
+        roomName.setText(currentRoom.name);
+        roomBedType.setText(currentRoom.bedType.toString());
+        roomSize.setText(String.valueOf(currentRoom.size));
+        roomPrice.setText(String.valueOf(currentRoom.price.price));
+        roomAddress.setText(currentRoom.address);
 
         int i = 0;
-        for (i=0; i < currentRoom.facility.size(); i++){
+        for (i = 0; i < currentRoom.facility.size(); i++){
             if(currentRoom.facility.get(i).equals(Facility.AC)){
                 AC.setChecked(true);
             }
@@ -61,28 +83,11 @@ public class DetailRoomActivity extends AppCompatActivity {
             }
         });
     }
-
-    void roomDetail() {
-        roomName = findViewById(R.id.room_detail_name);
-        roomBedType = findViewById(R.id.room_detail_bedtype);
-        roomSize = findViewById(R.id.room_detail_size);
-        roomPrice = findViewById(R.id.room_detail_price);
-        roomAddress = findViewById(R.id.room_detail_address);
-        AC = findViewById(R.id.checkBox_AC);
-        Wifi = findViewById(R.id.checkBox_Wifi);
-        Refrigerator = findViewById(R.id.checkBox_Refri);
-        Bathtub = findViewById(R.id.checkBox_bathtub);
-        Balcony = findViewById(R.id.checkBox_balcony);
-        Resto = findViewById(R.id.checkBox_restaurant);
-        SwimmingP = findViewById(R.id.checkBox_swimpool);
-        FitnessC = findViewById(R.id.checkBox_fitnessC);
-
-        roomName.setText(currentRoom.name);
-        roomBedType.setText(""+ currentRoom.bedType);
-        roomSize.setText(""+currentRoom.size);
-        roomPrice.setText(String.valueOf(currentRoom.price.price));
-        roomAddress.setText(currentRoom.address);
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
     }
 
 }

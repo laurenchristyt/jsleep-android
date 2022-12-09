@@ -54,7 +54,6 @@ public class CreateRoomActivity extends AppCompatActivity {
 
         createRoom.setOnClickListener(a -> {
                     createRoomRequest();
-                    finish();
                 }
         );
         cancelCreateRoom.setOnClickListener(new View.OnClickListener() {
