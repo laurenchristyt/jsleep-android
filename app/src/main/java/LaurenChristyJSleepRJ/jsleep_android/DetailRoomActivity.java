@@ -17,14 +17,19 @@ import LaurenChristyJSleepRJ.jsleep_android.model.Room;
 public class DetailRoomActivity extends AppCompatActivity {
     TextView roomName, roomBedType, roomSize, roomPrice, roomAddress;
     CheckBox AC, Wifi, Refrigerator, Bathtub, Balcony, Resto, SwimmingP, FitnessC;
-    static Room currentRoom = MainActivity.getSelectedRoom();
+    static Room currentRoom;
 
-    Button rentNow;
+    static Button rentNow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_room);
+
+        try
+        {
+            this.getSupportActionBar().hide();
+        } catch (NullPointerException e){}
 
         roomName = findViewById(R.id.room_detail_name);
         roomBedType = findViewById(R.id.room_detail_bedtype);
@@ -41,12 +46,13 @@ public class DetailRoomActivity extends AppCompatActivity {
         FitnessC = findViewById(R.id.checkBox_fitnessC);
 
         roomName.setText(currentRoom.name);
-        roomBedType.setText(currentRoom.bedType.toString());
-        roomSize.setText(String.valueOf(currentRoom.size));
+        roomBedType.setText(""+ currentRoom.bedType);
+        roomSize.setText(""+currentRoom.size);
         roomPrice.setText(String.valueOf(currentRoom.price.price));
         roomAddress.setText(currentRoom.address);
 
-        int i = 0;
+
+        int i;
         for (i = 0; i < currentRoom.facility.size(); i++){
             if(currentRoom.facility.get(i).equals(Facility.AC)){
                 AC.setChecked(true);

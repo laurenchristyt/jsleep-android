@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/sofa"
     tools:context=".CreatePayment">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="392dp"
         android:layout_height="1300dp"
         android:layout_gravity="center_horizontal"
+
+
         android:layout_marginTop="21dp"
-
-
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,13 +26,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-
+            android:fontFamily="@font/tango_sans"
             android:text="Order Room"
-
             android:textSize="50dp" />
 
         <TextView
             android:id="@+id/roomName"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -57,11 +59,9 @@
                 android:layout_height="67dp"
                 android:layout_gravity="left"
                 android:layout_marginTop="56dp"
-
+                android:fontFamily="@font/tango_sans"
                 android:gravity="center_vertical"
                 android:text="From"
-
-
                 android:textSize="35dp"
                 android:textStyle="bold" />
 
@@ -95,10 +95,9 @@
                 android:layout_height="67dp"
                 android:layout_gravity="left"
                 android:layout_marginTop="56dp"
-
                 android:gravity="center_vertical"
                 android:text="To"
-
+                android:fontFamily="@font/tango_sans"
                 android:textSize="35dp"
                 android:textStyle="bold" />
 
@@ -119,14 +118,15 @@
 
         </LinearLayout>
 
-
         <Button
             android:id="@+id/order"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
             android:enabled="true"
-
+            android:textColor="@color/black"
+            android:backgroundTint="@color/pinky"
             android:text="Order" />
 
 

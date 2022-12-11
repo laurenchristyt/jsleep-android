@@ -26,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
     BaseApiService mApiService;
     EditText username, password;
     Context mContext;
-    static Account accountLogin;
     static Renter renter;
 
     @Override
@@ -34,10 +33,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        try
+        {
+            this.getSupportActionBar().hide();
+        } catch (NullPointerException e){}
+
+
         Button loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(i -> startActivity(new Intent(this, MainActivity.class)));
 
-        Button registerButton = findViewById(R.id.registerButton);
+        TextView registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(i -> startActivity(new Intent(this, RegisterActivity.class)));
 
         mApiService = UtilsApi.getApiService();
@@ -50,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Account account = requestAccount();
                 Account login = requestLogin();
 
             }
@@ -81,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if(response.isSuccessful()){
-                    accountLogin = response.body();
+                    MainActivity.accountLogin = response.body();
                     Intent move = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(move);
                     Toast.makeText(mContext, "Login Successful", Toast.LENGTH_SHORT).show();

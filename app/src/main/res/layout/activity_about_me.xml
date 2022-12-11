@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bck"
     tools:context=".AboutMeActivity"
     >
 
@@ -33,54 +34,94 @@
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="135dp"
+                    android:layout_width="200dp"
                     android:layout_height="41dp"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="28dp"
-                    android:text="Account Details"
-                    android:textSize="15dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/tango_sans"
+                    android:text="My Account"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="115dp"
+                    android:layout_height="87dp"
+                    android:layout_marginStart="160dp"
+                    android:layout_marginTop="72dp"
+                    android:src="@drawable/round_yello"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.84"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="180dp"
+                    android:layout_height="87dp"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="72dp"
+                    android:src="@drawable/round_pinky"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="303dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="167dp"
+                    android:src="@drawable/round_teal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
                 <TextView
                     android:id="@+id/AboutName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="31dp"
-                    android:text="Name"
+                    android:layout_marginStart="212dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Name:"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-                <TextView
-                    android:id="@+id/AboutEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="24dp"
-                    android:text="Email"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/AboutName" />
 
                 <TextView
                     android:id="@+id/AboutBalance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="28dp"
-                    android:text="Balance"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="78dp"
+                    android:text="Total Balance:"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/AboutEmail" />
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/AboutEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="76dp"
+                    android:text="Email:"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/AboutName" />
 
                 <EditText
                     android:id="@+id/amount"
                     android:layout_width="177dp"
                     android:layout_height="48dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="232dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="238dp"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Top Up Amount"
+                    android:hint="Top Up Amount"
                     android:textColor="#B3B3B3"
                     android:textSize="13dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -90,48 +131,49 @@
                     android:id="@+id/TopUpButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="380dp"
-                    android:backgroundTint="#8F8E8E"
+                    android:layout_marginBottom="372dp"
+                    android:backgroundTint="@color/black"
                     android:text="Top Up"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.567"
+                    app:layout_constraintHorizontal_bias="0.384"
                     app:layout_constraintStart_toEndOf="@+id/amount" />
 
                 <TextView
                     android:id="@+id/nameAboutMe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="156dp"
-                    android:layout_marginBottom="28dp"
-                    android:text="luren"
+                    android:layout_marginTop="128dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="name"
                     android:textAlignment="textEnd"
-                    app:layout_constraintBottom_toTopOf="@+id/emailAboutMe"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.767"
-                    app:layout_constraintStart_toEndOf="@+id/AboutName" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/emailAboutMe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="28dp"
+
+                    android:layout_marginTop="188dp"
+                    android:layout_marginEnd="24dp"
+
                     android:text="lauren.christy@ui.ac.id"
-                    app:layout_constraintBottom_toTopOf="@+id/balanceAboutMe"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.857"
-                    app:layout_constraintStart_toEndOf="@+id/AboutEmail" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/balanceAboutMe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="0.0"
-                    app:layout_constraintBottom_toTopOf="@+id/TopUpButton"
+                    android:layout_marginTop="128dp"
+                    android:fontFamily="@font/tango_sans"
+                    android:hint="0.0"
+                    android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.846"
-                    app:layout_constraintStart_toEndOf="@+id/AboutBalance" />
+                    app:layout_constraintHorizontal_bias="0.096"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/RegisterRenterButton"
@@ -166,36 +208,55 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <TextView
-                            android:id="@+id/RegisterRenter"
-                            android:layout_width="107dp"
-                            android:layout_height="29dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:text="Register Renter"
-                            android:textSize="15dp"
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="285dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="9dp"
+                            android:layout_marginTop="124dp"
+                            android:src="@drawable/round_grey"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imageView6"
+                            android:layout_width="285dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="9dp"
+                            android:layout_marginTop="67dp"
+                            android:src="@drawable/round_grey"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="285dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="9dp"
+                            android:layout_marginTop="182dp"
+                            android:src="@drawable/round_grey"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
 
                         <EditText
                             android:id="@+id/RegisterName"
                             android:layout_width="258dp"
                             android:layout_height="43dp"
-                            android:layout_marginTop="28dp"
+                            android:layout_marginTop="72dp"
                             android:ems="10"
                             android:hint="Name"
                             android:inputType="text"
                             android:textColorHint="#B3B3B3"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.488"
+                            app:layout_constraintHorizontal_bias="0.355"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/RegisterRenter" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <EditText
                             android:id="@+id/RegisterAddress"
                             android:layout_width="258dp"
                             android:layout_height="43dp"
-                            android:layout_marginTop="24dp"
+                            android:layout_marginTop="128dp"
                             android:ems="10"
                             android:hint="Address"
                             android:inputType="text"
@@ -203,13 +264,13 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.488"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/RegisterName" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <EditText
                             android:id="@+id/RegisterPhone"
                             android:layout_width="258dp"
                             android:layout_height="43dp"
-                            android:layout_marginTop="24dp"
+                            android:layout_marginTop="16dp"
                             android:ems="10"
                             android:hint="Phone Number"
                             android:inputType="number"
@@ -223,33 +284,35 @@
                             android:id="@+id/RegisterButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="28dp"
-                            android:layout_marginTop="18dp"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginTop="260dp"
+                            android:backgroundTint="#E1D7D7"
                             android:text="Register"
                             android:textColor="@color/black"
-                            android:backgroundTint="#E1D7D7"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/RegisterPhone" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <Button
                             android:id="@+id/CancelButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="18dp"
-                            android:layout_marginEnd="20dp"
+                            android:layout_marginTop="260dp"
+                            android:layout_marginEnd="40dp"
+                            android:backgroundTint="#E1D7D7"
                             android:text="Cancel"
                             android:textColor="@color/black"
-                            android:backgroundTint="#E1D7D7"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/RegisterPhone" />
+                            app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
 
+
                     android:id="@+id/cardViewRenter"
                     android:layout_width="303dp"
+
                     android:layout_height="349dp"
                     app:cardCornerRadius="16dp"
                     android:layout_marginStart="8dp"
@@ -265,14 +328,43 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
+
                         <TextView
                             android:id="@+id/renter"
-                            android:layout_width="67dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_marginStart="28dp"
                             android:layout_marginTop="24dp"
-                            android:text="Renter"
-                            android:textSize="15dp"
+                            android:text="           Renter"
+                            android:fontFamily="@font/tango_sans"
+                            android:textSize="25dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="285dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="9dp"
+                            android:layout_marginTop="170dp"
+                            android:src="@drawable/round_grey"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="285dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="9dp"
+                            android:layout_marginTop="130dp"
+                            android:src="@drawable/round_grey"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="285dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="9dp"
+                            android:layout_marginTop="90dp"
+                            android:src="@drawable/round_grey"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -338,10 +430,11 @@
                             android:textAlignment="textEnd"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/RenterAddressView" />
+
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
-
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,6 +28,11 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        try
+        {
+            this.getSupportActionBar().hide();
+        } catch (NullPointerException e){}
+
         Button registerButton = findViewById(R.id.registerButtonLink);
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);

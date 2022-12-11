@@ -1,28 +1,18 @@
 package LaurenChristyJSleepRJ.jsleep_android;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import LaurenChristyJSleepRJ.jsleep_android.model.Payment;
 import LaurenChristyJSleepRJ.jsleep_android.request.BaseApiService;
 import LaurenChristyJSleepRJ.jsleep_android.request.UtilsApi;
@@ -39,11 +29,15 @@ public class CreatePayment extends AppCompatActivity {
     EditText fromDate, toDate;
     final String REGEX_DATE_PATTERN = "\\d{4}-\\d{2}-\\d{2}";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_create);
+
+        try
+        {
+            this.getSupportActionBar().hide();
+        } catch (NullPointerException e){}
 
         mApiService= UtilsApi.getApiService();
         mContext = this;
@@ -56,7 +50,7 @@ public class CreatePayment extends AppCompatActivity {
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Payment payment = requestPayment(LoginActivity.accountLogin.id, LoginActivity.accountLogin.renter.id, DetailRoomActivity.currentRoom.id,
+                Payment payment = requestPayment(MainActivity.accountLogin.id, MainActivity.accountLogin.renter.id, DetailRoomActivity.currentRoom.id,
                         fromDate.getText().toString(), toDate.getText().toString());
             }
         });
@@ -81,10 +75,10 @@ public class CreatePayment extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Payment> call, Response<Payment> response) {
                     if (response.isSuccessful()) {
-                        // MainActivity.reloadAccount(MainActivity.savedAccount.id);
                         Toast.makeText(mContext, "Payment Success", Toast.LENGTH_SHORT).show();
-                        Intent move = new Intent(CreatePayment.this, AboutMeActivity.class);
+                        Intent move = new Intent(CreatePayment.this, MainActivity.class);
                         startActivity(move);
+
                     } else {
                         Toast.makeText(mContext, "Payment Failed1", Toast.LENGTH_SHORT).show();
                     }

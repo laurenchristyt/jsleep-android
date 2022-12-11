@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 
+import android.util.Log;
 import android.view.Menu;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import LaurenChristyJSleepRJ.jsleep_android.model.Account;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     BaseApiService mApiService;
     Context mContext;
     EditText pageSize_et;
+    static Account accountLogin;
     Button nextBtn, prevBtn, goBtn;
     ListView listView;
     int currPage = 0;
@@ -68,11 +73,20 @@ public class MainActivity extends AppCompatActivity {
             getAllRooms();
         });
 
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            selectedPos = position;
-            Intent intent = new Intent(MainActivity.this, DetailRoomActivity.class);
-            startActivity(intent);
-        });
+        listView = findViewById(R.id.room_list_view);
+        listView.setOnItemClickListener(this::onItemClick);
+    }
+
+    public void onItemClick(AdapterView<?> l, View v, int position, long id) {
+        Log.i("HelloListView", "You clicked Item: " + id + " at position:" + position);
+        // Then you start a new Activity via Intent
+        Intent intent = new Intent();
+        intent.setClass(this, DetailRoomActivity.class);
+        DetailRoomActivity.currentRoom = allRooms.get(position);
+        intent.putExtra("position", position);
+        // Or / And
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 
     protected ArrayList<Room> getAllRooms() {
@@ -108,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
-        if (LoginActivity.accountLogin.renter == null) {
+        if (accountLogin.renter == null) {
             menu.findItem(R.id.add_button).setVisible(false);
         } else {
             menu.findItem(R.id.add_button).setVisible(true);

@@ -33,10 +33,11 @@ public class AboutMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
 
+
         mApiService = UtilsApi.getApiService();
         mContext = this;
 
-        Account account = LoginActivity.accountLogin;
+        Account account = MainActivity.accountLogin;
 
         //Account Details
         username = findViewById(R.id.nameAboutMe);
@@ -44,9 +45,10 @@ public class AboutMeActivity extends AppCompatActivity {
         balance = findViewById(R.id.balanceAboutMe);
         amount = findViewById(R.id.amount);
 
-        username.setText(LoginActivity.accountLogin.name);
-        email.setText(LoginActivity.accountLogin.email);
-        balance.setText(String.valueOf(LoginActivity.accountLogin.balance));
+        username.setText(MainActivity.accountLogin.name);
+        email.setText(MainActivity.accountLogin.email);
+        String balanceText = "Rp. " + String.valueOf(MainActivity.accountLogin.balance);
+        balance.setText(balanceText);
 
         //Button
         Button registerRenterButton = findViewById(R.id.RegisterRenterButton);
@@ -70,7 +72,7 @@ public class AboutMeActivity extends AppCompatActivity {
         topUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                requestTopUp();
+                requestTopUp(MainActivity.accountLogin.id,Double.parseDouble(amount.getText().toString()));
             }
         });
 
@@ -114,20 +116,20 @@ public class AboutMeActivity extends AppCompatActivity {
             renterCard.setVisibility(View.VISIBLE);
             registerCard.setVisibility(View.GONE);
 
-            renterName.setText(LoginActivity.accountLogin.renter.username);
-            renterAddress.setText(LoginActivity.accountLogin.renter.address);
-            renterPhone.setText(LoginActivity.accountLogin.renter.phoneNumber);
+            renterName.setText(MainActivity.accountLogin.renter.username);
+            renterAddress.setText(MainActivity.accountLogin.renter.address);
+            renterPhone.setText(MainActivity.accountLogin.renter.phoneNumber);
         }
     }
 
     public Renter requestRegister() {
-        mApiService.registerRenter(LoginActivity.accountLogin.id, editName.getText().toString(), editAddress.getText().toString(), editPhone.getText().toString()).enqueue(new Callback<Renter>(){
+        mApiService.registerRenter(MainActivity.accountLogin.id, editName.getText().toString(), editAddress.getText().toString(), editPhone.getText().toString()).enqueue(new Callback<Renter>(){
             @Override
             public void onResponse(Call<Renter> call, Response<Renter> response) {
                 if(response.isSuccessful()) {
                     Renter renter;
                     renter = response.body();
-                    LoginActivity.accountLogin.renter = renter;
+                    MainActivity.accountLogin.renter = renter;
                     System.out.println("ACCOUNT RENTER ADDED");
                     Intent move = new Intent(AboutMeActivity.this, AboutMeActivity.class);
                     startActivity(move);
@@ -145,15 +147,16 @@ public class AboutMeActivity extends AppCompatActivity {
         return null;
     }
 
-    protected Boolean requestTopUp() {
-        mApiService.topUp(LoginActivity.accountLogin.id, Double.parseDouble(amount.getText().toString())).enqueue(new Callback<Boolean>() {
-            @Override
+    protected Boolean requestTopUp(int id, double balance) {
+        mApiService.topUp(MainActivity.accountLogin.id, Double.parseDouble(amount.getText().toString())).enqueue(new Callback<Boolean>() {
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                Toast.makeText(mContext, "Top Up Successful", Toast.LENGTH_SHORT).show();
-                Intent move = new Intent(AboutMeActivity.this, AboutMeActivity.class);
-                startActivity(move);
-
-
+                if (response.isSuccessful()) {
+                    // Update the TextView with the new balance
+                    MainActivity.accountLogin.balance = MainActivity.accountLogin.balance + balance;
+                    System.out.println("BALANCE ADDED");
+                    Toast.makeText(mContext, "Top Up Successful!", Toast.LENGTH_LONG).show();
+                    recreate();
+                }
             }
 
             @Override

@@ -48,6 +48,11 @@ public class CreateRoomActivity extends AppCompatActivity {
         mContext = this;
 
 
+        try
+        {
+            this.getSupportActionBar().hide();
+        } catch (NullPointerException e){}
+
         createRoom = findViewById(R.id.button_createRoom);
         cancelCreateRoom = findViewById(R.id.button_cancelCreateRoom);
 
@@ -77,7 +82,7 @@ public class CreateRoomActivity extends AppCompatActivity {
         city = findViewById(R.id.city_spinner);
         City cityEnum = City.valueOf(city.getSelectedItem().toString());
 
-        mApiService.create(LoginActivity.accountLogin.id,
+        mApiService.create(MainActivity.accountLogin.id,
                 roomName.getText().toString(),
                 size,
                 price,

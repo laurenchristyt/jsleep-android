@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bck3"
     tools:context=".CreateRoomActivity">
 
     <androidx.cardview.widget.CardView
@@ -28,8 +29,45 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="27dp"
                 android:layout_marginTop="15dp"
+                android:fontFamily="@font/tango_sans"
                 android:text="Create Room"
                 android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="68dp"
+                android:src="@drawable/round_grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="125dp"
+                android:src="@drawable/round_grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="184dp"
+                android:src="@drawable/round_grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="245dp"
+                android:src="@drawable/round_grey"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +79,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="267dp"
                 android:text="Facility"
-                android:textColor="@color/black"
+                android:fontFamily="@font/tango_sans"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +123,7 @@
                 android:layout_marginEnd="53dp"
                 android:checked="false"
                 android:text="Swimming Pool"
+                android:buttonTint="@color/pinky"
                 app:layout_constraintEnd_toStartOf="@+id/checkBox_fitnessC"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox_bathtub" />
@@ -97,6 +136,7 @@
                 android:layout_marginTop="2dp"
                 android:checked="false"
                 android:text="Bathtub"
+                android:buttonTint="@color/pinky"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox_AC" />
 
@@ -108,6 +148,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="43dp"
                 android:text="AC"
+                android:buttonTint="@color/pinky"
                 app:layout_constraintEnd_toStartOf="@+id/checkBox_Wifi"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/facility_checkbox" />
@@ -120,6 +161,7 @@
                 android:layout_marginEnd="38dp"
                 android:checked="false"
                 android:text="Refrigerator"
+                android:buttonTint="@color/pinky"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/room_size_et" />
 
@@ -130,6 +172,7 @@
                 android:layout_marginEnd="23dp"
                 android:checked="false"
                 android:text="Fitness Center"
+                android:buttonTint="@color/pinky"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox_restaurant" />
 
@@ -141,6 +184,7 @@
                 android:layout_marginEnd="36dp"
                 android:checked="false"
                 android:text="Wifi"
+                android:buttonTint="@color/pinky"
                 app:layout_constraintEnd_toStartOf="@+id/checkBox_Refri"
                 app:layout_constraintTop_toBottomOf="@+id/room_size_et" />
 
@@ -151,6 +195,7 @@
                 android:layout_marginEnd="45dp"
                 android:checked="false"
                 android:text="Restaurant"
+                android:buttonTint="@color/pinky"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox_Refri" />
 
@@ -161,6 +206,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="12dp"
                 android:checked="false"
+                android:buttonTint="@color/pinky"
                 android:text="Balcony"
                 app:layout_constraintEnd_toStartOf="@+id/checkBox_restaurant"
                 app:layout_constraintStart_toEndOf="@+id/checkBox_bathtub"
@@ -222,21 +268,20 @@
                 android:id="@+id/city_spinner"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
-                android:layout_marginBottom="2dp"
-                app:layout_constraintBottom_toTopOf="@+id/bedType_spinner"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.594"
-                app:layout_constraintStart_toEndOf="@+id/selectcity" />
+                android:layout_marginStart="138dp"
+                app:layout_constraintBottom_toBottomOf="@+id/bedType_spinner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.911" />
 
             <Spinner
                 android:id="@+id/bedType_spinner"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.687"
+                app:layout_constraintHorizontal_bias="0.75"
                 app:layout_constraintStart_toEndOf="@+id/select_bedType" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -248,6 +293,9 @@
         android:layout_marginStart="21dp"
         android:layout_marginTop="20dp"
         android:text="Create"
+        android:backgroundTint="@color/pinky"
+        android:textColor="@color/black"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
@@ -258,6 +306,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="22dp"
         android:text="Cancel"
+        android:backgroundTint="@color/pinky"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

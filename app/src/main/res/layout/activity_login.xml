@@ -3,113 +3,123 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/opening"
     android:layout_height="match_parent"
-    android:background="@drawable/_96a58346155aeeb5ec317682d64217d"
+    android:theme="@android:style/Theme.NoTitleBar"
     tools:context=".LoginActivity">
 
 
-    <EditText
-        android:id="@+id/usernameTextBoxLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="65dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginTop="308dp"
-        android:backgroundTint="@color/white"
-        android:hint="Username"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="#FDE0D8"
+    <TextView
+        android:id="@+id/textViewh"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="392dp"
+        android:fontFamily="@font/tango_sans"
+        android:text="a place to stay when Java just won't let you get some sleep"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="254dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="316dp"
+        android:src="@drawable/text_1669211985050"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="460dp"
+        android:src="@drawable/round_night"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="520dp"
+        android:src="@drawable/round_night"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/passwordTextBoxLogin"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/usernameTextBoxLogin"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="65dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginTop="384dp"
-        android:backgroundTint="@color/white"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="520dp"
+        android:background="@null"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:hint="Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="#FDE0D8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/registerButton"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/usernameTextBoxLogin"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/loginButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="532dp"
-        android:backgroundTint="@color/white"
-        android:gravity="center"
-        android:text="Dont have account?\nRegister now"
-        android:textColor="@color/black"
-        android:textSize="12dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="460dp"
+        android:background="@null"
+        android:hint="Username"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="10dp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/passwordTextBoxLogin"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="464dp"
-        android:backgroundTint="@color/cardview_dark_background"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="636dp"
+        android:backgroundTint="@color/opening"
         android:text="Login"
+        android:textColor="@color/black"
+        app:cornerRadius="@android:dimen/app_icon_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <TextView
+        android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="556dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="684dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:onClick="register"
+        android:text="Dont have account? Sign up"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/text_1669211985050"
-        app:tint="#FDE0D8" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="250dp"
-        android:layout_height="31dp"
-        android:layout_marginBottom="504dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/text_1669291265077"
-        app:tint="#FDE0D8" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="240dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="524dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/text_1669291244547"
-        app:tint="#FDE0D8" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
