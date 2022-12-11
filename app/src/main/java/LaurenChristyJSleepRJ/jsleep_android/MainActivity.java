@@ -2,10 +2,8 @@ package LaurenChristyJSleepRJ.jsleep_android;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
-
 import android.util.Log;
 import android.view.Menu;
 import android.os.Bundle;
@@ -18,19 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import LaurenChristyJSleepRJ.jsleep_android.model.Account;
 import retrofit2.Call;
 import retrofit2.Callback;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
-
 import LaurenChristyJSleepRJ.jsleep_android.model.Room;
 import LaurenChristyJSleepRJ.jsleep_android.request.BaseApiService;
 import LaurenChristyJSleepRJ.jsleep_android.request.UtilsApi;

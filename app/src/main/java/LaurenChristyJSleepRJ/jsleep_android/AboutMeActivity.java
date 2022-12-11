@@ -20,12 +20,31 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * The AboutMeActivity class is an Android activity that represents the account's of specific user.
+ *
+ * @author Lauren Christy Tanudjaja
+ * @version 1.0
+ */
 public class AboutMeActivity extends AppCompatActivity {
+    /**
+     * The {@link TextView} that displays the user's name, user's email, user's balance,
+     * the amount the user wants to top up their account with, option for user to log out, and name,
+     * address, and phone number of the registered renter.
+     */
     TextView username, email, balance;
     TextView renterName, renterAddress, renterPhone;
-
+    /**
+     * The {@link EditText} where the user can enter the name, address, and phone number of a renter to register.
+     */
     EditText editName, editAddress, editPhone, amount;
+    /**
+     * A {@link BaseApiService} instance for making API requests.
+     */
     BaseApiService mApiService;
+    /**
+     * The {@link Context} of the activity.
+     */
     Context mContext;
 
     @Override
@@ -33,34 +52,29 @@ public class AboutMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
 
+        try
+        {
+            this.getSupportActionBar().hide();
+        } catch (NullPointerException e){}
 
         mApiService = UtilsApi.getApiService();
         mContext = this;
 
         Account account = MainActivity.accountLogin;
 
-        //Account Details
         username = findViewById(R.id.nameAboutMe);
         email = findViewById(R.id.emailAboutMe);
         balance = findViewById(R.id.balanceAboutMe);
         amount = findViewById(R.id.amount);
 
-        username.setText(MainActivity.accountLogin.name);
-        email.setText(MainActivity.accountLogin.email);
-        String balanceText = "Rp. " + String.valueOf(MainActivity.accountLogin.balance);
-        balance.setText(balanceText);
-
-        //Button
         Button registerRenterButton = findViewById(R.id.RegisterRenterButton);
         Button cancelButton = findViewById(R.id.CancelButton);
         Button topUpButton = findViewById(R.id.TopUpButton);
         Button registerRenter = findViewById(R.id.RegisterButton);
 
-        //Card View
         CardView renterCard = findViewById(R.id.cardViewRenter);
         CardView registerCard = findViewById(R.id.cardViewRegister);
 
-        //Register Renter
         renterName = findViewById(R.id.RenterNameView);
         renterAddress = findViewById(R.id.RenterAddressView);
         renterPhone = findViewById(R.id.RenterPhoneNumberView);
@@ -68,6 +82,11 @@ public class AboutMeActivity extends AppCompatActivity {
         editName = findViewById(R.id.RegisterName);
         editAddress = findViewById(R.id.RegisterAddress);
         editPhone = findViewById(R.id.RegisterPhone);
+
+        username.setText(MainActivity.accountLogin.name);
+        email.setText(MainActivity.accountLogin.email);
+        String balanceText = "Rp. " + String.valueOf(MainActivity.accountLogin.balance);
+        balance.setText(balanceText);
 
         topUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,43 +141,22 @@ public class AboutMeActivity extends AppCompatActivity {
         }
     }
 
-    public Renter requestRegister() {
-        mApiService.registerRenter(MainActivity.accountLogin.id, editName.getText().toString(), editAddress.getText().toString(), editPhone.getText().toString()).enqueue(new Callback<Renter>(){
-            @Override
-            public void onResponse(Call<Renter> call, Response<Renter> response) {
-                if(response.isSuccessful()) {
-                    Renter renter;
-                    renter = response.body();
-                    MainActivity.accountLogin.renter = renter;
-                    System.out.println("ACCOUNT RENTER ADDED");
-                    Intent move = new Intent(AboutMeActivity.this, AboutMeActivity.class);
-                    startActivity(move);
-                    Toast.makeText(mContext, "Register Renter Successful!", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Renter> call, Throwable t) {
-                System.out.println("ACCOUNT RENTER ALREADY REGISTERED");
-                System.out.println(t.toString());
-                Toast.makeText(mContext, "ACCOUNT RENTER ALREADY REGISTERED!", Toast.LENGTH_LONG).show();
-            }
-        });
-        return null;
-    }
-
+    /**
+     * This function is used to top up the user's balance
+     *
+     * @param id  the id
+     * @param balance the user's balance
+     * @return Renter
+     */
     protected Boolean requestTopUp(int id, double balance) {
         mApiService.topUp(MainActivity.accountLogin.id, Double.parseDouble(amount.getText().toString())).enqueue(new Callback<Boolean>() {
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if (response.isSuccessful()) {
-                    // Update the TextView with the new balance
-                    MainActivity.accountLogin.balance = MainActivity.accountLogin.balance + balance;
-                    System.out.println("BALANCE ADDED");
+                    MainActivity.accountLogin.balance = MainActivity.accountLogin.balance+balance;
                     Toast.makeText(mContext, "Top Up Successful!", Toast.LENGTH_LONG).show();
                     recreate();
                 }
             }
-
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
                 Toast.makeText(mContext, "Top Up Failed", Toast.LENGTH_SHORT).show();
@@ -166,4 +164,30 @@ public class AboutMeActivity extends AppCompatActivity {
         });
         return false;
     }
+
+    /**
+     * This function is used to to request a new renter
+     */
+    public Renter requestRegister() {
+        mApiService.registerRenter(MainActivity.accountLogin.id, editName.getText().toString(), editAddress.getText().toString(), editPhone.getText().toString()).enqueue(new Callback<Renter>(){
+            @Override
+            public void onResponse(Call<Renter> call, Response<Renter> response) {
+                if(response.isSuccessful()) {
+                    Renter renter = response.body();
+                    MainActivity.accountLogin.renter = renter;
+                    Intent move = new Intent(AboutMeActivity.this, AboutMeActivity.class);
+                    startActivity(move);
+                    Toast.makeText(mContext, "Successful!", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Renter> call, Throwable t) {
+                Toast.makeText(mContext, "Failed!", Toast.LENGTH_LONG).show();
+            }
+        });
+        return null;
+    }
+
+
 }

@@ -14,11 +14,27 @@ import android.widget.TextView;
 import LaurenChristyJSleepRJ.jsleep_android.model.Facility;
 import LaurenChristyJSleepRJ.jsleep_android.model.Room;
 
+/**
+ * The DetailRoomActivity class is an Android activity that represents all of the information of what the room has.
+ *
+ * @author Lauren Christy Tanudjaja
+ * @version 1.0
+ */
 public class DetailRoomActivity extends AppCompatActivity {
-    TextView roomName, roomBedType, roomSize, roomPrice, roomAddress;
-    CheckBox AC, Wifi, Refrigerator, Bathtub, Balcony, Resto, SwimmingP, FitnessC;
     static Room currentRoom;
-
+    /**
+     * The {@link TextView} that displays the room's name, the room's city, the room's price,
+     * the room's address, and the room's bed type.
+     */
+    TextView roomName, roomBedType, roomSize, roomPrice, roomAddress;
+    /**
+     * The {@link CheckBox} that displays the room's facility : ac, refrigerator, bath tub, balcony
+     * restaurant, pool, and fitness center.
+     */
+    CheckBox AC, Wifi, Refrigerator, Bathtub, Balcony, Resto, SwimmingP, FitnessC;
+    /**
+     * Button for booking a room
+     */
     static Button rentNow;
 
     @Override

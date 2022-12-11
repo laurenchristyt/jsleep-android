@@ -22,10 +22,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * The LoginActivity class is an Android activity that represents the login session to JSleep.
+ *
+ * @author Lauren Christy Tanudjaja
+ * @version 1.0
+ */
 public class LoginActivity extends AppCompatActivity {
+    /**
+     * A {@link BaseApiService} instance for making API requests.
+     */
     BaseApiService mApiService;
+    /**
+     * The {@link EditText} where the user can enter their email and password.
+     */
     EditText username, password;
+    /**
+     * The {@link Context} of the activity.
+     */
     Context mContext;
+    /**
+     * Static instance of Renter to be shared across the application.
+     */
     static Renter renter;
 
     @Override

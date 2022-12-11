@@ -76,7 +76,7 @@ public class CreatePayment extends AppCompatActivity {
                 public void onResponse(Call<Payment> call, Response<Payment> response) {
                     if (response.isSuccessful()) {
                         Toast.makeText(mContext, "Payment Success", Toast.LENGTH_SHORT).show();
-                        Intent move = new Intent(CreatePayment.this, MainActivity.class);
+                        Intent move = new Intent(CreatePayment.this, ConfirmActivity.class);
                         startActivity(move);
 
                     } else {

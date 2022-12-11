@@ -3,6 +3,11 @@ package LaurenChristyJSleepRJ.jsleep_android.model;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * This class represents a room.
+ *
+ * @author Lauren Christy Tanudjaja
+ */
 public class Room extends Serializable {
     public int size;
     public String name;

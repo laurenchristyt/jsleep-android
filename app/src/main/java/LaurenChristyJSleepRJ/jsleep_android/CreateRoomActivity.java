@@ -26,14 +26,42 @@ import LaurenChristyJSleepRJ.jsleep_android.request.UtilsApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * The CreateRoomActivity class is an Android activity that represents all of the information to create a new room.
+ *
+ * @author Lauren Christy Tanudjaja
+ * @version 1.0
+ */
 public class CreateRoomActivity extends AppCompatActivity {
+    /**
+     * A {@link BaseApiService} instance for making API requests.
+     */
     BaseApiService mApiService;
+    /**
+     * The {@link Context} of the activity.
+     */
     Context mContext;
+    /**
+     * The {@link EditText} where the renter can enter the room's name, the room's price,
+     * the room's size, and the room's address.
+     */
     EditText roomName, roomPrice, roomAddress, roomSize;
+    /**
+     * The {@link CheckBox} that the renter can choose from the room's facility- ac, refrigerator, bath tub,
+     * balcony, restaurant, pool, and fitness center- is provided with the room.
+     */
     CheckBox AC, Wifi, Refrigerator, Bathtub, Balcony, Resto, SwimmingP, FitnessC;
+    /**
+     * The {@link Spinner} where the renter can choose between the provided selection.
+     */
     Spinner bedType, city;
+    /**
+     * Button for submitting a new room and cancel it.
+     */
     Button createRoom, cancelCreateRoom;
+    /**
+     * Arraylist of facilities to store the facilities provided.
+     */
     ArrayList<Facility> facility = new ArrayList<>();
 
     @Override
@@ -69,6 +97,11 @@ public class CreateRoomActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This function is used to to request a new room.
+     *
+     * @return Room
+     */
     protected Room createRoomRequest(){
         roomName = findViewById(R.id.room_name_et);
         roomPrice = findViewById(R.id.room_price_et);

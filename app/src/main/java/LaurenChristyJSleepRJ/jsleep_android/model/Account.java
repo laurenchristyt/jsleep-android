@@ -1,17 +1,36 @@
 package LaurenChristyJSleepRJ.jsleep_android.model;
 
-
-public class Account extends Serializable{
+/**
+ * The {@code Account} class represents an account for the JSleep Android app.
+ *
+ * @author Lauren Christy Tanudjaja
+ * @version 1.0
+ */
+public class Account extends Serializable {
+    /**
+     * The name of the user associated with the account.
+     */
     public String name;
-    public String email;
+    /**
+     * The password for the account.
+     */
     public String password;
-    public double balance;
+    /**
+     * The renter associated with the account.
+     */
     public Renter renter;
+    /**
+     * The email address of the user associated with the account.
+     */
+    public String email;
 
-
+    /**
+     * The balance of the account.
+     */
+    public double balance;
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Account{" +
                 "Balance =" + balance +
                 ", Email ='" + email + '\'' +
